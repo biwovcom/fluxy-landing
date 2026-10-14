@@ -2,13 +2,10 @@
 <!--
   FLUXY OIL — Landing page
   ============================================================
-  Antes de publicar, reemplaza estos 3 puntos (marcados con TODO):
-  1) WHATSAPP_NUMBER (abajo en el <script>) → número real de WhatsApp Business de Fluxy.
-  2) Fotos de producto colocadas (carpeta Imágenes/). Si consigues fotos de estilo de
-     vida (chica usando el producto, grupo de amigas), reemplaza el <img> de la sección
-     que corresponda por la nueva foto.
-  3) Sección #testimonios → reemplaza las reseñas de ejemplo por testimonios reales
-     de clientas.
+  - Imágenes optimizadas en img/ (WebP, resolución original, sin capturas de pantalla).
+  - Todos los botones de compra van a WA_LINK (enlace de WhatsApp Business).
+  - Sección #testimonios: reemplazar las reseñas por testimonios reales de clientas.
+  - Fotos de Fluxy Mini: reemplazar img/mini-*.webp cuando estén las fotos nuevas.
   ============================================================
 -->
 <html lang="es">
@@ -16,10 +13,16 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Fluxy Oil — Alivio natural para el dolor menstrual</title>
-<meta name="description" content="Fluxy Oil: aceite tópico natural para el dolor menstrual. Fórmula innovadora, fácil de aplicar, pensada para tu bienestar. Compra por WhatsApp.">
+<meta name="description" content="Fluxy Oil: aceite de uso tópico para aliviar cólicos y molestias menstruales. Manzanilla, canela, salvia blanca, menta, jengibre, lavanda, apitoxina y lidocaína. Envíos a toda Colombia.">
+<meta property="og:title" content="Fluxy Oil — tu mejor aliado para esos días del mes">
+<meta property="og:description" content="Aceite de uso tópico para aliviar cólicos y molestias menstruales. 15% OFF en tu primera compra.">
+<meta property="og:image" content="img/og.jpg">
+<meta name="theme-color" content="#b83a5c">
+<link rel="icon" type="image/png" href="img/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400;1,9..144,500&family=Lilita+One&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=MuseoModerno:ital,wght@0,100..900;1,100..900&family=Poetsen+One&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="img/hero-fluxy.webp">
 <style>
   :root{
     --pink:#d94f72;
@@ -29,430 +32,533 @@
     --blush-soft:#fdf0f3;
     --cream:#ffffff;
     --ink:#3d2b2e;
-    --ink-soft:#8a7075;
+    --ink-soft:#7d6469;
     --line:rgba(61,43,46,.12);
     --wa:#25d366;
-    --radius:6px;
+    --radius:14px;
+    --sec:76px;          /* espacio vertical entre secciones (desktop) */
   }
+  @media (max-width:860px){:root{--sec:60px;}}
   *{margin:0;padding:0;box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
+  html{scroll-behavior:smooth;scroll-padding-top:84px;}
   body{
-    font-family:'Inter',sans-serif;
-    font-weight:300;
-    background:var(--cream);
+    font-family:'MuseoModerno',sans-serif;
+    font-weight:400;
+    background:var(--blush-soft);
     color:var(--ink);
-    line-height:1.7;
+    line-height:1.65;
     overflow-x:hidden;
     -webkit-font-smoothing:antialiased;
-    font-size:15.5px;
+    font-size:16px;
   }
-  h1,h2,h3,.display{font-family:'Lilita One',cursive;font-weight:400;color:var(--pink);
-    text-transform:uppercase;letter-spacing:.005em;line-height:.95;}
+  h1,h2,h3,.display{font-family:'Poetsen One',sans-serif;font-weight:400;color:var(--pink);
+    letter-spacing:.005em;line-height:1.02;}
   a{text-decoration:none;color:inherit;}
-  img{max-width:100%;display:block;}
+  img{max-width:100%;display:block;height:auto;}
   ul{list-style:none;}
   .wrap{max-width:1200px;margin:0 auto;padding:0 32px;}
+  @media (max-width:600px){.wrap{padding:0 20px;}}
   .btn{
-    display:inline-flex;align-items:center;gap:9px;
-    padding:15px 30px;border-radius:99px;font-weight:600;font-size:.85rem;
-    cursor:pointer;border:1.5px solid transparent;transition:opacity .2s ease, background .2s ease, border-color .2s ease, transform .2s ease;
-    white-space:nowrap;letter-spacing:.02em;
+    display:inline-flex;align-items:center;justify-content:center;gap:9px;
+    padding:14px 28px;border-radius:99px;font-weight:600;font-size:.9rem;font-family:'MuseoModerno',sans-serif;
+    cursor:pointer;border:1.5px solid transparent;transition:background .2s ease, border-color .2s ease, transform .2s ease;
+    white-space:nowrap;letter-spacing:.01em;
   }
   .btn:hover{transform:translateY(-2px);}
   .btn-primary{background:var(--pink);color:#fff;}
   .btn-primary:hover{background:var(--pink-deep);}
-  .btn-wa{background:var(--ink);color:var(--cream);}
+  .btn-wa{background:var(--ink);color:#fff;}
   .btn-wa:hover{background:#2a1c1e;}
-  .btn-outline{background:transparent;color:var(--ink);border-color:var(--line);}
+  .btn-outline{background:transparent;color:var(--ink);border-color:rgba(61,43,46,.22);}
   .btn-outline:hover{border-color:var(--ink);}
   .btn-light{background:#fff;color:var(--pink-deep);}
-  .btn-light:hover{background:var(--blush-soft);}
+  .btn-light:hover{background:var(--blush);}
   section{position:relative;}
   .eyebrow{
-    display:inline-flex;align-items:center;gap:10px;font-size:.7rem;font-weight:600;
-    letter-spacing:.18em;text-transform:uppercase;color:var(--pink-deep);margin-bottom:16px;
-    font-family:'Inter',sans-serif;
+    display:inline-flex;align-items:center;gap:10px;font-size:.8rem;font-family:'Poetsen One',sans-serif;
+    letter-spacing:.12em;text-transform:uppercase;color:var(--pink-deep);margin-bottom:14px;
   }
-  .eyebrow::before{content:'';width:16px;height:1px;background:var(--pink-deep);}
+  .eyebrow::before{content:'';width:16px;height:1.5px;background:var(--pink-deep);}
   .reveal{opacity:0;transform:translateY(20px);transition:opacity .7s ease, transform .7s ease;}
   .reveal.in{opacity:1;transform:translateY(0);}
-
-  /* photo placeholder — swap for <img> with a real photo, see TODOs above */
-  .photo-panel{position:relative;overflow:hidden;background:
-      radial-gradient(circle at 30% 25%,#f6c9d6 0%,transparent 55%),
-      radial-gradient(circle at 75% 70%,#e9a8bb 0%,transparent 50%),
-      linear-gradient(160deg,#f3d3dc,#cf99a8 60%,#a9727f);
-  }
-  .photo-panel::after{content:'';position:absolute;inset:0;
-      background:radial-gradient(circle at 50% 40%,transparent 30%,rgba(61,43,46,.18) 100%);}
-  .photo-panel::before{content:'';position:absolute;inset:0;z-index:1;opacity:.5;mix-blend-mode:overlay;
-      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
-  .photo-logo{position:absolute;top:24px;left:26px;z-index:2;font-family:'Fraunces',serif;
-    font-style:italic;font-weight:500;font-size:1.15rem;color:#fff;letter-spacing:-.01em;}
-
-  /* real product photo panel */
-  .photo-real{position:relative;overflow:hidden;background:var(--blush);}
-  .photo-real img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;}
-  .photo-real.dark::after{content:'';position:absolute;inset:0;
-    background:linear-gradient(180deg,rgba(61,43,46,0) 35%,rgba(61,43,46,.6) 100%);}
-
-  /* organic blob crop — echoes the circular photo collage in Fluxy's IG content */
-  .blob-shape{border-radius:63% 37% 41% 59% / 55% 45% 55% 45%;}
-  @media (max-width:860px){.blob-shape{border-radius:var(--radius);}}
-
-  .butterfly{position:absolute;opacity:.9;}
+  @media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none;}}
 
   /* ===== Announcement bar ===== */
   .announce{
     background:var(--pink-deep);color:#fff;overflow:hidden;white-space:nowrap;
-    font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;font-weight:500;
+    font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;font-family:'Poetsen One',sans-serif;
   }
-  .announce .track{display:inline-flex;animation:marquee 34s linear infinite;padding:10px 0;}
-  .announce span{padding:0 30px;display:inline-flex;align-items:center;gap:30px;opacity:.92;}
+  .announce .track{display:inline-flex;animation:marquee 36s linear infinite;padding:9px 0;}
+  .announce span{padding:0 26px;display:inline-flex;align-items:center;}
+  .announce span::after{content:'✦';margin-left:52px;opacity:.6;font-size:.7em;}
+  .announce b{font-weight:400;background:#fff;color:var(--pink-deep);padding:2px 10px;border-radius:99px;margin-right:8px;letter-spacing:.06em;}
   @keyframes marquee{from{transform:translateX(0);}to{transform:translateX(-50%);}}
 
   /* ===== Nav ===== */
   header{
-    position:sticky;top:0;z-index:100;background:rgba(255,255,255,.9);backdrop-filter:blur(10px);
+    position:sticky;top:0;z-index:100;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
     border-bottom:1px solid var(--line);
   }
-  nav{display:flex;align-items:center;justify-content:space-between;padding:18px 32px;max-width:1200px;margin:0 auto;}
-  .logo{display:flex;align-items:center;gap:8px;}
-  .logo-mark{width:22px;height:22px;flex-shrink:0;}
-  .logo-text{font-family:'Fraunces',serif;font-weight:500;font-size:1.35rem;color:var(--pink);line-height:1;letter-spacing:-.01em;}
-  .logo-text em{font-style:italic;font-weight:400;color:var(--ink);}
-  .nav-links{display:flex;gap:38px;align-items:center;}
-  .nav-links a{font-size:.85rem;font-weight:400;color:var(--ink-soft);transition:color .2s;}
+  nav{display:flex;align-items:center;justify-content:space-between;padding:12px 32px;max-width:1200px;margin:0 auto;}
+  .logo{display:flex;align-items:center;}
+  .logo img{height:46px;width:auto;}
+  .nav-links{display:flex;gap:34px;align-items:center;}
+  .nav-links a{font-size:.92rem;font-weight:500;color:var(--ink-soft);transition:color .2s;}
   .nav-links a:hover{color:var(--pink-deep);}
-  .nav-actions{display:flex;align-items:center;gap:20px;}
-  .icon-btn{width:20px;height:20px;display:flex;align-items:center;justify-content:center;
+  .nav-actions{display:flex;align-items:center;gap:18px;}
+  .icon-btn{width:22px;height:22px;display:flex;align-items:center;justify-content:center;
     color:var(--ink-soft);transition:color .2s;}
   .icon-btn:hover{color:var(--pink-deep);}
-  .burger{display:none;background:none;border:none;font-size:1.3rem;cursor:pointer;color:var(--ink);font-weight:300;}
-
+  .burger{display:none;background:none;border:none;font-size:1.5rem;cursor:pointer;color:var(--ink);}
+  @media (max-width:980px){.nav-links{gap:22px;}}
   @media (max-width:860px){
+    nav{padding:10px 20px;}
+    .logo img{height:40px;}
     .nav-links{display:none;}
     .burger{display:block;}
+    .nav-actions .btn{padding:11px 20px;}
   }
+  @media (max-width:420px){.nav-actions .icon-btn{display:none;}}
 
-  /* ===== Hero (split panel) ===== */
-  .hero .wrap{max-width:100%;padding:0;}
-  .hero-grid{display:grid;grid-template-columns:1fr 1fr;min-height:640px;}
-  .hero-copy{display:flex;flex-direction:column;justify-content:center;padding:60px 64px;background:var(--blush-soft);}
-  .hero h1{font-size:clamp(2.6rem,5vw,4.2rem);margin-bottom:22px;}
-  .hero h1 .sub{display:block;font-size:.55em;color:var(--ink);}
-  .hero p{font-size:1rem;color:var(--ink-soft);max-width:420px;margin-bottom:34px;font-weight:300;}
-  .hero-cta{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:36px;}
-  .trust-row{display:flex;gap:0;flex-wrap:wrap;font-size:.7rem;color:var(--ink-soft);
-    letter-spacing:.08em;text-transform:uppercase;}
-  .trust-row span{padding:0 18px;border-right:1px solid var(--line);}
+  /* ===== Hero ===== */
+  .hero{background:linear-gradient(100deg,var(--blush-soft) 0%,var(--blush-soft) 48%,var(--blush) 48%);}
+  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;max-width:1200px;margin:0 auto;min-height:600px;}
+  .hero-copy{display:flex;flex-direction:column;justify-content:center;padding:64px 48px 64px 32px;}
+  .hero h1{font-size:clamp(3.4rem,7vw,5.6rem);margin-bottom:6px;}
+  .hero h1 .sub{display:block;font-size:.4em;color:var(--ink);line-height:1.12;margin-top:8px;}
+  .hero p{font-size:1.02rem;color:var(--ink-soft);max-width:500px;margin:18px 0 30px;}
+  .hero-cta{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:30px;}
+  .trust-row{display:flex;flex-wrap:wrap;font-size:.76rem;color:var(--ink-soft);font-family:'Poetsen One',sans-serif;
+    letter-spacing:.08em;text-transform:uppercase;row-gap:8px;}
+  .trust-row span{padding:0 16px;border-right:1px solid var(--line);}
   .trust-row span:first-child{padding-left:0;}
   .trust-row span:last-child{border-right:none;}
-  .hero-visual-wrap{position:relative;display:flex;align-items:center;justify-content:center;
-    background:var(--blush);min-height:360px;padding:56px;}
-  .hero-visual{position:relative;width:100%;height:100%;min-height:400px;}
+  .hero-visual{position:relative;display:flex;align-items:center;justify-content:center;padding:40px 24px;}
+  .hero-visual::before{content:'';position:absolute;width:min(78%,440px);aspect-ratio:1;
+    border-radius:63% 37% 41% 59% / 55% 45% 55% 45%;
+    background:radial-gradient(circle at 35% 30%,#fff 0%,#f7c6d3 45%,#ee9fb4 100%);opacity:.8;}
+  .float-wrap{position:relative;display:flex;flex-direction:column;align-items:center;}
+  .float-img{height:min(500px,62vh);width:auto;position:relative;z-index:2;
+    animation:float 5s ease-in-out infinite;filter:drop-shadow(0 26px 30px rgba(184,58,92,.28));}
+  .float-shadow{width:150px;height:18px;border-radius:50%;background:rgba(122,40,66,.22);filter:blur(7px);
+    margin-top:-6px;animation:shadow 5s ease-in-out infinite;}
+  @keyframes float{0%,100%{transform:translateY(0) rotate(-2deg);}50%{transform:translateY(-22px) rotate(2deg);}}
+  @keyframes shadow{0%,100%{transform:scale(1);opacity:1;}50%{transform:scale(.75);opacity:.6;}}
+  .hero-visual .butterfly{position:absolute;right:28px;bottom:28px;width:38px;z-index:3;opacity:.9;}
+  @media (prefers-reduced-motion:reduce){.float-img,.float-shadow{animation:none;}}
 
   @media (max-width:860px){
+    .hero{background:var(--blush-soft);}
     .hero-grid{grid-template-columns:1fr;min-height:auto;}
-    .hero-copy{padding:56px 28px;text-align:center;order:2;}
+    .hero-visual{order:1;background:var(--blush);padding:34px 20px 26px;}
+    .float-img{height:340px;}
+    .hero-copy{order:2;padding:40px 22px 50px;text-align:center;align-items:center;}
     .hero p{margin-left:auto;margin-right:auto;}
-    .hero-cta,.trust-row{justify-content:center;width:100%;}
-    .hero-visual-wrap{order:1;min-height:320px;padding:30px;}
-    .hero-visual{min-height:300px;}
+    .hero-cta,.trust-row{justify-content:center;}
   }
+  @media (max-width:420px){.hero-cta .btn{flex:1 1 100%;}}
 
   /* ===== Marquee strip ===== */
-  .strip{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:18px 0;overflow:hidden;white-space:nowrap;background:#fff;}
+  .strip{background:var(--pink);padding:13px 0;overflow:hidden;white-space:nowrap;}
   .strip .track{display:inline-flex;animation:marquee 40s linear infinite;}
-  .strip span{padding:0 30px;font-family:'Lilita One',cursive;font-weight:400;font-size:1rem;text-transform:uppercase;
-    color:var(--pink-soft);display:inline-flex;align-items:center;gap:30px;letter-spacing:.02em;}
+  .strip span{padding:0 26px;font-family:'Poetsen One',sans-serif;font-size:1.05rem;text-transform:uppercase;
+    color:#fff;display:inline-flex;align-items:center;letter-spacing:.03em;}
+  .strip span::after{content:'✦';margin-left:52px;font-size:.7em;opacity:.7;}
 
-  /* ===== Ritual (photo bg + card overlay) ===== */
-  .ritual{padding:110px 32px;}
-  .ritual-frame{max-width:1200px;margin:0 auto;position:relative;border-radius:var(--radius);overflow:hidden;
-    min-height:480px;display:flex;align-items:center;}
-  .ritual-frame .photo-real{position:absolute;inset:0;}
-  .ritual-card{position:relative;z-index:2;background:var(--blush);padding:56px;max-width:520px;margin-left:64px;border-radius:var(--radius);}
-  .ritual-card h2{font-size:clamp(2.1rem,3.6vw,3rem);margin-bottom:22px;}
-  .ritual-card p{font-size:1.02rem;color:var(--pink-deep);font-weight:400;line-height:1.65;}
-  @media (max-width:860px){
-    .ritual{padding:70px 18px;}
-    .ritual-frame{min-height:560px;}
-    .ritual-card{margin:0 20px;padding:34px 28px;}
+  /* ===== Ritual Fluxy ===== */
+  .ritual{padding:var(--sec) 32px;background:var(--blush-soft);}
+  .ritual-frame{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1.15fr .85fr;
+    background:var(--blush);border-radius:var(--radius);overflow:hidden;}
+  .ritual-card{padding:60px 56px;display:flex;flex-direction:column;justify-content:center;}
+  .ritual-card h2{font-size:clamp(2.2rem,3.8vw,3.2rem);margin-bottom:22px;}
+  .ritual-card .lead{font-family:'Poetsen One',sans-serif;font-size:1.25rem;color:var(--ink);line-height:1.3;margin-bottom:16px;}
+  .ritual-card p{font-size:1rem;color:var(--ink);opacity:.86;margin-bottom:14px;}
+  .ritual-card .tagline{margin-top:12px;padding-top:20px;border-top:1px solid rgba(184,58,92,.25);
+    font-family:'Poetsen One',sans-serif;color:var(--pink-deep);font-size:1.25rem;line-height:1.3;opacity:1;}
+  .ritual-photo{position:relative;min-height:520px;}
+  .ritual-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%;}
+  @media (max-width:980px){.ritual-card{padding:44px 36px;}.ritual-photo{min-height:0;}}
+  @media (max-width:700px){
+    .ritual{padding:var(--sec) 16px;}
+    .ritual-frame{grid-template-columns:1fr;}
+    .ritual-photo{order:-1;min-height:0;aspect-ratio:4/5;}
+    .ritual-card{padding:36px 26px 40px;}
   }
 
-  /* ===== Cómo se usa (split like AGITA/APLICA) ===== */
-  .howto{background:var(--blush-soft);}
-  .howto-grid{display:grid;grid-template-columns:1fr 1fr;min-height:560px;}
-  .howto-copy{padding:70px 64px;display:flex;flex-direction:column;justify-content:center;}
-  .howto-copy .eyebrow{margin-bottom:26px;}
-  .step-line{padding:22px 0;border-bottom:1px solid var(--line);}
+  /* ===== Cómo se usa (personaje · texto · personaje) ===== */
+  .howto{background:#fff;padding:var(--sec) 0;}
+  .howto-grid{display:grid;grid-template-columns:1fr 1.5fr 1fr;align-items:center;gap:24px;max-width:1200px;margin:0 auto;padding:0 32px;}
+  .howto-copy{text-align:left;}
+  .howto-copy h2{font-size:clamp(2.2rem,3.8vw,3rem);margin-bottom:26px;}
+  .pj{display:flex;justify-content:center;}
+  .pj img{width:100%;max-width:270px;}
+  .pj-left img{animation:bob 4.5s ease-in-out infinite;}
+  .pj-right img{animation:bob 4.5s ease-in-out 1.2s infinite;}
+  @keyframes bob{0%,100%{transform:translateY(0);}50%{transform:translateY(-12px);}}
+  @media (prefers-reduced-motion:reduce){.pj img{animation:none;}}
+  .step-line{display:grid;grid-template-columns:54px 1fr;gap:14px;padding:20px 0;border-bottom:1px solid var(--line);}
   .step-line:first-of-type{border-top:1px solid var(--line);}
-  .step-line h3{font-size:clamp(1.8rem,3vw,2.4rem);margin-bottom:6px;}
-  .step-line p{font-size:.9rem;color:var(--ink-soft);font-weight:300;max-width:360px;}
-  .howto-visual{position:relative;min-height:360px;}
-  @media (max-width:860px){
-    .howto-grid{grid-template-columns:1fr;min-height:auto;}
-    .howto-copy{padding:56px 28px;order:2;}
-    .howto-visual{order:1;min-height:320px;}
+  .step-num{font-family:'Poetsen One',sans-serif;font-size:1.6rem;color:var(--pink-soft);line-height:1.1;}
+  .step-line h3{font-size:clamp(1.5rem,2.4vw,1.9rem);margin-bottom:6px;text-transform:uppercase;}
+  .step-line p{font-size:.95rem;color:var(--ink-soft);}
+  @media (max-width:980px){.howto-grid{grid-template-columns:.8fr 1.6fr .8fr;gap:16px;}}
+  @media (max-width:760px){
+    .howto-grid{grid-template-columns:1fr 1fr;padding:0 20px;row-gap:8px;}
+    .howto-copy{grid-column:1 / -1;grid-row:2;}
+    .pj-left{grid-row:1;grid-column:1;}
+    .pj-right{grid-row:1;grid-column:2;}
+    .pj img{max-width:170px;}
+    .howto-copy h2{text-align:center;}
+    .howto-copy .eyebrow{display:flex;justify-content:center;}
   }
 
-  /* ===== Producto spotlight ===== */
-  .spotlight{padding:110px 32px;}
-  .spotlight .wrap{padding:0;display:grid;grid-template-columns:.85fr 1.15fr;gap:0;align-items:stretch;
-    max-width:1200px;border-radius:var(--radius);overflow:hidden;background:#fff;border:1px solid var(--line);}
-  .spotlight-img{position:relative;min-height:420px;}
-  .spotlight-copy{padding:60px 64px;display:flex;flex-direction:column;justify-content:center;}
-  .spotlight h2{font-size:clamp(2rem,3.2vw,2.8rem);margin-bottom:18px;}
-  .ing-list{display:grid;gap:0;margin:26px 0 32px;border-top:1px solid var(--line);}
-  .ing-list li{display:flex;gap:14px;align-items:baseline;font-size:.9rem;color:var(--ink-soft);
-    font-weight:300;padding:16px 0;border-bottom:1px solid var(--line);}
-  .ing-list li b{color:var(--ink);font-weight:600;}
-  @media (max-width:860px){
-    .spotlight{padding:0;}
-    .spotlight .wrap{grid-template-columns:1fr;border-radius:0;border-left:none;border-right:none;}
-    .spotlight-img{min-height:320px;}
-    .spotlight-copy{padding:44px 28px;text-align:center;}
-    .ing-list li{text-align:left;}
+  /* ===== Producto ===== */
+  .products{padding:var(--sec) 0;background:var(--blush-soft);}
+  .section-head{text-align:center;max-width:620px;margin:0 auto 44px;}
+  .section-head h2{font-size:clamp(2.2rem,3.8vw,3rem);}
+  .section-head p{color:var(--ink-soft);margin-top:14px;font-size:1rem;}
+  .product{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);background:#fff;border-radius:var(--radius);overflow:hidden;
+    border:1px solid var(--line);margin-bottom:28px;}
+  .product.flip .carousel{order:2;}
+  .product-copy{padding:48px 52px;display:flex;flex-direction:column;justify-content:center;}
+  .product-copy h3{font-size:clamp(2.2rem,3.6vw,3rem);text-transform:uppercase;}
+  .product-copy .tag{font-family:'Poetsen One',sans-serif;color:var(--ink);font-size:1.25rem;margin-top:6px;line-height:1.25;}
+  .product-copy .size{display:inline-block;margin:14px 0 22px;font-size:.84rem;font-weight:600;color:var(--pink-deep);
+    background:var(--blush);padding:6px 14px;border-radius:99px;align-self:flex-start;}
+  .qa{display:grid;grid-template-columns:1fr 1fr;gap:18px 26px;border-top:1px solid var(--line);padding-top:22px;}
+  .qa h4{font-family:'Poetsen One',sans-serif;font-weight:400;font-size:.95rem;color:var(--pink-deep);margin-bottom:4px;}
+  .qa p{font-size:.9rem;color:var(--ink-soft);line-height:1.55;}
+  .buy-row{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:28px;
+    padding-top:22px;border-top:1px solid var(--line);}
+  .price{font-family:'Poetsen One',sans-serif;font-size:2rem;color:var(--ink);line-height:1;}
+  .price small{font-family:'MuseoModerno',sans-serif;font-size:.8rem;color:var(--ink-soft);margin-left:6px;font-weight:500;}
+  .products-close{text-align:center;padding-top:18px;}
+  .products-close p{font-family:'Poetsen One',sans-serif;color:var(--pink);font-size:clamp(1.4rem,2.6vw,2rem);line-height:1.2;}
+  .products-close p + p{color:var(--ink);font-size:clamp(1.1rem,2vw,1.4rem);margin-top:8px;}
+
+  /* carrusel */
+  .carousel{position:relative;background:var(--blush);min-height:520px;}
+  .car-track{position:absolute;inset:0;display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;scrollbar-width:none;}
+  .car-track::-webkit-scrollbar{display:none;}
+  .car-track img{flex:0 0 100%;width:100%;height:100%;object-fit:cover;scroll-snap-align:start;}
+  .car-btn{position:absolute;top:50%;transform:translateY(-50%);width:42px;height:42px;border-radius:50%;border:none;
+    background:rgba(255,255,255,.88);color:var(--pink-deep);font-size:1.3rem;cursor:pointer;display:flex;align-items:center;justify-content:center;
+    box-shadow:0 6px 18px rgba(184,58,92,.18);transition:background .2s;z-index:2;}
+  .car-btn:hover{background:#fff;}
+  .car-prev{left:14px;}
+  .car-next{right:14px;}
+  .car-dots{position:absolute;bottom:16px;left:0;right:0;display:flex;justify-content:center;gap:8px;z-index:2;}
+  .car-dots button{width:8px;height:8px;border-radius:99px;border:none;background:rgba(255,255,255,.65);cursor:pointer;padding:0;transition:width .3s, background .3s;}
+  .car-dots button.on{width:24px;background:#fff;}
+
+  @media (max-width:980px){.product-copy{padding:40px 36px;}.qa{grid-template-columns:1fr;}}
+  @media (max-width:760px){
+    .product,.product.flip{grid-template-columns:1fr;}
+    .product.flip .carousel{order:0;}
+    .carousel{min-height:0;aspect-ratio:1/1;}
+    .product-copy{padding:32px 22px 34px;}
+    .buy-row .btn{flex:1 1 100%;}
   }
 
   /* ===== Beneficios ===== */
-  .benefits{padding:110px 0;}
-  .section-head{text-align:center;max-width:580px;margin:0 auto 56px;}
-  .section-head h2{font-size:clamp(2rem,3.6vw,2.8rem);}
-  .section-head p{color:var(--ink-soft);margin-top:16px;font-size:.94rem;font-weight:300;}
+  .benefits{padding:var(--sec) 0;background:#fff;}
   .benefits-grid{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);border-left:1px solid var(--line);}
-  .benefit-card{padding:38px 34px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);}
-  .benefit-card .num{font-family:'Lilita One',cursive;font-size:1.3rem;color:var(--pink-soft);margin-bottom:18px;display:block;}
-  .benefit-card h3{font-size:1.02rem;margin-bottom:9px;font-weight:600;font-family:'Inter',sans-serif;color:var(--ink);
-    text-transform:none;letter-spacing:0;}
-  .benefit-card p{font-size:.85rem;color:var(--ink-soft);font-weight:300;}
-  @media (max-width:860px){.benefits-grid{grid-template-columns:1fr;}}
+  .benefit-card{padding:36px 32px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);}
+  .benefit-card .num{font-family:'Poetsen One',sans-serif;font-size:1.5rem;color:var(--pink-soft);margin-bottom:14px;display:block;}
+  .benefit-card h3{font-size:1.25rem;margin-bottom:10px;color:var(--ink);line-height:1.2;}
+  .benefit-card p{font-size:.92rem;color:var(--ink-soft);}
+  .benefits-close{text-align:center;margin-top:40px;font-family:'Poetsen One',sans-serif;color:var(--pink);font-size:clamp(1.6rem,3vw,2.2rem);}
+  @media (max-width:980px){.benefits-grid{grid-template-columns:1fr 1fr;}}
+  @media (max-width:600px){.benefits-grid{grid-template-columns:1fr;}.benefit-card{padding:28px 22px;}}
 
-  /* ===== Comunidad (photo band like screenshot 3) ===== */
-  .community-band{position:relative;min-height:420px;display:flex;align-items:flex-end;padding:48px 0;}
-  .community-band .photo-real{position:absolute;inset:0;}
-  .community-inner{position:relative;z-index:2;width:100%;text-align:center;color:#fff;}
-  .community-inner h2{color:#fff;font-size:clamp(1.9rem,3.4vw,2.6rem);margin-bottom:14px;}
-  .community-inner p{color:rgba(255,255,255,.88);font-size:.95rem;max-width:440px;margin:0 auto 26px;font-weight:300;}
-  .community-inner .hero-cta{justify-content:center;margin-bottom:0}
+  /* ===== Comunidad ===== */
+  .community{padding:var(--sec) 0;background:var(--blush);}
+  .community-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:0;align-items:stretch;background:var(--pink-deep);border-radius:var(--radius);overflow:hidden;}
+  .community-photo img{width:100%;height:100%;object-fit:cover;aspect-ratio:16/10;}
+  .community-copy{padding:48px 44px;display:flex;flex-direction:column;justify-content:center;color:#fff;}
+  .community-copy .eyebrow{color:#fff;}
+  .community-copy .eyebrow::before{background:#fff;}
+  .community-copy h2{color:#fff;font-size:clamp(2rem,3.4vw,2.8rem);margin-bottom:14px;}
+  .community-copy p{color:rgba(255,255,255,.9);margin-bottom:24px;}
+  .community-copy .hero-cta{margin-bottom:0;}
+  @media (max-width:860px){
+    .community-grid{grid-template-columns:1fr;}
+    .community-copy{padding:34px 24px 38px;text-align:center;}
+    .community-copy .eyebrow{justify-content:center;}
+    .community-copy .hero-cta{justify-content:center;}
+  }
 
   /* ===== Testimonios ===== */
-  .testimonials{padding:110px 0;background:var(--blush-soft);}
-  .t-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;}
-  .t-card{padding:16px 32px;}
-  .t-mark{font-family:'Lilita One',cursive;font-size:2.4rem;color:var(--pink-soft);line-height:1;margin-bottom:6px;display:block;}
-  .t-card p{font-size:.92rem;color:var(--ink);margin-bottom:20px;font-weight:300;}
+  .testimonials{padding:var(--sec) 0;background:var(--blush-soft);}
+  .t-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+  .t-card{padding:28px 28px 26px;background:#fff;border-radius:var(--radius);border:1px solid var(--line);}
+  .t-mark{font-family:'Poetsen One',sans-serif;font-size:2.6rem;color:var(--pink-soft);line-height:1;display:block;height:26px;}
+  .t-stars{color:var(--pink);letter-spacing:2px;font-size:.9rem;margin-bottom:8px;}
+  .t-card p{font-size:.95rem;color:var(--ink);margin-bottom:18px;}
   .t-who{display:flex;align-items:center;gap:10px;}
-  .t-avatar{width:32px;height:32px;border-radius:50%;background:var(--pink);color:#fff;
-    display:flex;align-items:center;justify-content:center;font-weight:600;font-size:.75rem;font-family:'Inter',sans-serif;}
-  .t-who b{font-size:.83rem;font-weight:600;}
-  .t-who span{font-size:.72rem;color:var(--ink-soft);}
-  @media (max-width:860px){.t-grid{grid-template-columns:1fr;gap:34px;}}
-
-  /* ===== Redes sociales ===== */
-  .socials{padding:110px 0;text-align:center;}
-  .social-links{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:36px;}
+  .t-avatar{width:34px;height:34px;border-radius:50%;background:var(--pink);color:#fff;
+    display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.8rem;}
+  .t-who b{font-size:.88rem;font-weight:600;}
+  .t-who span{font-size:.76rem;color:var(--ink-soft);}
+  .t-cta{text-align:center;margin-top:34px;}
+  .t-cta p{color:var(--ink-soft);margin-bottom:14px;}
+  @media (max-width:860px){.t-grid{grid-template-columns:1fr;}}
 
   /* ===== FAQ (estilo chat de Instagram) ===== */
-  .faq{padding:110px 32px;}
-  .faq-panel{max-width:640px;margin:0 auto;background:var(--pink);border-radius:32px;padding:52px 44px 60px;position:relative;overflow:hidden;}
-  .faq-panel::before{content:'';position:absolute;inset:0;opacity:.4;mix-blend-mode:overlay;
-      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
-  .faq-header{position:relative;z-index:1;display:flex;align-items:center;gap:12px;margin-bottom:34px;}
-  .faq-avatar{width:38px;height:38px;border-radius:50%;background:#fff;flex-shrink:0;
-    display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-style:italic;font-weight:600;color:var(--pink-deep);font-size:1rem;}
-  .faq-handle{color:#fff;font-weight:600;font-size:.9rem;}
-  .faq-bubbles{position:relative;z-index:1;display:flex;flex-direction:column;gap:14px;}
-  .faq-item{background:#fff;border-radius:20px;padding:18px 24px;cursor:pointer;
-    box-shadow:0 10px 26px rgba(184,58,92,.18);max-width:86%;}
-  .faq-q{display:flex;justify-content:space-between;align-items:center;gap:14px;font-weight:600;font-size:.9rem;font-family:'Inter',sans-serif;color:var(--ink);}
-  .faq-q .plus{transition:transform .3s ease;color:var(--pink-deep);font-size:1.1rem;font-weight:400;flex-shrink:0;}
+  .faq{padding:var(--sec) 20px;background:#fff;}
+  .faq-panel{max-width:700px;margin:0 auto;background:var(--pink);border-radius:32px;padding:46px 40px 56px;position:relative;overflow:hidden;}
+  .faq-header{position:relative;z-index:1;display:flex;align-items:center;gap:12px;margin-bottom:28px;}
+  .faq-avatar{width:42px;height:42px;border-radius:50%;background:#fff;flex-shrink:0;display:flex;align-items:center;justify-content:center;}
+  .faq-avatar img{width:24px;}
+  .faq-handle{color:#fff;font-weight:600;font-size:.95rem;}
+  .faq-bubbles{position:relative;z-index:1;display:flex;flex-direction:column;gap:12px;}
+  .faq-item{background:#fff;border-radius:20px;padding:16px 22px;cursor:pointer;
+    box-shadow:0 10px 26px rgba(184,58,92,.18);max-width:90%;}
+  .faq-q{display:flex;justify-content:space-between;align-items:center;gap:14px;font-weight:600;font-size:.95rem;color:var(--ink);
+    background:none;border:none;width:100%;text-align:left;font-family:inherit;cursor:pointer;}
+  .faq-q .plus{transition:transform .3s ease;color:var(--pink-deep);font-size:1.3rem;font-weight:400;flex-shrink:0;}
   .faq-item.open .plus{transform:rotate(45deg);}
-  .faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease;font-size:.85rem;color:var(--ink-soft);font-weight:300;}
-  .faq-item.open .faq-a{max-height:200px;margin-top:10px;}
-  .faq-panel .butterfly{bottom:20px;right:26px;opacity:.5;z-index:1;}
-  @media (max-width:600px){.faq-panel{padding:40px 24px 50px;}.faq-item{max-width:100%;}}
+  .faq-a{max-height:0;overflow:hidden;transition:max-height .4s ease;font-size:.9rem;color:var(--ink-soft);}
+  .faq-a p + p{margin-top:6px;}
+  .faq-item.open .faq-a{max-height:420px;margin-top:10px;}
+  .faq-deco{position:absolute;bottom:18px;right:22px;width:34px;opacity:.55;z-index:1;filter:brightness(0) invert(1);}
+  @media (max-width:600px){.faq-panel{padding:36px 18px 56px;border-radius:24px;}.faq-item{max-width:100%;}}
 
   /* ===== CTA final ===== */
-  .final-cta{background:var(--pink-deep);color:#fff;padding:100px 32px;text-align:center;}
-  .final-cta h2{font-size:clamp(2rem,4vw,3.2rem);margin-bottom:18px;color:#fff;}
-  .final-cta p{color:rgba(255,255,255,.78);max-width:440px;margin:0 auto 34px;font-size:.94rem;font-weight:300;}
+  .final-cta{background:var(--pink-deep);color:#fff;padding:var(--sec) 24px;text-align:center;}
+  .final-cta h2{font-size:clamp(2.2rem,4vw,3.2rem);margin-bottom:16px;color:#fff;}
+  .final-cta p{color:rgba(255,255,255,.85);max-width:460px;margin:0 auto 30px;}
   .final-cta .hero-cta{justify-content:center;margin-bottom:0;}
 
   /* ===== Footer ===== */
-  footer{padding:80px 0 30px;}
-  .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;padding-bottom:56px;}
-  .foot-grid h4{font-size:.7rem;text-transform:uppercase;letter-spacing:.14em;margin-bottom:18px;color:var(--ink-soft);font-weight:600;}
-  .foot-grid li{margin-bottom:11px;font-size:.87rem;font-weight:300;color:var(--ink-soft);}
+  footer{padding:64px 0 28px;background:#fff;}
+  .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;padding-bottom:44px;}
+  .foot-grid h4{font-family:'Poetsen One',sans-serif;font-weight:400;font-size:.8rem;text-transform:uppercase;letter-spacing:.12em;margin-bottom:16px;color:var(--pink-deep);}
+  .foot-grid li{margin-bottom:10px;font-size:.9rem;color:var(--ink-soft);}
   .foot-grid a:hover{color:var(--pink-deep);}
-  .foot-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:28px;
-    border-top:1px solid var(--line);font-size:.76rem;color:var(--ink-soft);flex-wrap:wrap;gap:12px;font-weight:300;}
+  .foot-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:24px;
+    border-top:1px solid var(--line);font-size:.8rem;color:var(--ink-soft);flex-wrap:wrap;gap:12px;}
   .foot-social{display:flex;gap:18px;}
-  @media (max-width:860px){.foot-grid{grid-template-columns:1fr 1fr;}}
+  @media (max-width:860px){.foot-grid{grid-template-columns:1fr 1fr;gap:30px;}}
 
   /* ===== WhatsApp float ===== */
   .wa-float{
-    position:fixed;bottom:26px;right:26px;z-index:999;background:var(--wa);color:#fff;
-    width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;
-    box-shadow:0 8px 22px rgba(37,211,102,.35);transition:opacity .2s;
+    position:fixed;bottom:22px;right:22px;z-index:999;background:var(--wa);color:#fff;
+    width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+    box-shadow:0 8px 22px rgba(37,211,102,.35);transition:transform .2s;
   }
-  .wa-float:hover{opacity:.88;}
+  .wa-float:hover{transform:scale(1.06);}
 
   /* ===== Mobile menu ===== */
-  .mobile-menu{position:fixed;inset:0;background:var(--cream);z-index:200;display:none;
-    flex-direction:column;align-items:center;justify-content:center;gap:32px;}
+  .mobile-menu{position:fixed;inset:0;background:#fff;z-index:200;display:none;
+    flex-direction:column;align-items:center;justify-content:center;gap:28px;}
   .mobile-menu.open{display:flex;}
-  .mobile-menu a{font-family:'Fraunces',serif;font-size:1.4rem;font-weight:400;text-transform:none;color:var(--ink);letter-spacing:0;}
-  .mobile-close{position:absolute;top:26px;right:30px;font-size:1.4rem;background:none;border:none;cursor:pointer;color:var(--ink);font-weight:300;}
+  .mobile-menu a:not(.btn){font-family:'Poetsen One',sans-serif;font-size:1.6rem;color:var(--ink);}
+  .mobile-close{position:absolute;top:22px;right:26px;font-size:1.5rem;background:none;border:none;cursor:pointer;color:var(--ink);}
 </style>
 </head>
 <body>
 
-<div class="announce">
+<div class="announce" aria-label="Promociones">
   <div class="track">
-    <span>Envíos a toda Colombia</span><span>Fórmula natural</span><span>Compra por WhatsApp</span>
-    <span>Envíos a toda Colombia</span><span>Fórmula natural</span><span>Compra por WhatsApp</span>
-    <span>Envíos a toda Colombia</span><span>Fórmula natural</span><span>Compra por WhatsApp</span>
+    <span><b>15% OFF</b>en tu primera compra</span><span>Envíos a toda Colombia</span><span>Compra por WhatsApp</span>
+    <span><b>15% OFF</b>en tu primera compra</span><span>Envíos a toda Colombia</span><span>Compra por WhatsApp</span>
+    <span><b>15% OFF</b>en tu primera compra</span><span>Envíos a toda Colombia</span><span>Compra por WhatsApp</span>
+    <span><b>15% OFF</b>en tu primera compra</span><span>Envíos a toda Colombia</span><span>Compra por WhatsApp</span>
   </div>
 </div>
 
 <header>
   <nav>
-    <a href="#top" class="logo">
-      <svg class="logo-mark" viewBox="0 0 40 40" fill="none">
-        <defs>
-          <linearGradient id="bowGrad" x1="0" y1="0" x2="40" y2="40">
-            <stop offset="0" stop-color="#b83a5c"/>
-            <stop offset="1" stop-color="#e98aa2"/>
-          </linearGradient>
-        </defs>
-        <path d="M20 20C20 20 16 6 8 8C2 9.5 4 19 12 20C4 21 2 30.5 8 32C16 34 20 20 20 20Z" fill="url(#bowGrad)"/>
-        <path d="M20 20C20 20 24 6 32 8C38 9.5 36 19 28 20C36 21 38 30.5 32 32C24 34 20 20 20 20Z" fill="url(#bowGrad)"/>
-        <circle cx="20" cy="20" r="2.6" fill="#3d2b2e"/>
-      </svg>
-      <span class="logo-text">fluxy <em>oil</em></span>
+    <a href="#top" class="logo" aria-label="Fluxy Oil — inicio">
+      <img src="img/logo.png" alt="Fluxy" width="227" height="240">
     </a>
     <div class="nav-links">
       <a href="#producto">Producto</a>
+      <a href="#como-se-usa">Cómo se usa</a>
       <a href="#beneficios">Beneficios</a>
-      <a href="#testimonios">Testimonios</a>
       <a href="#comunidad">Comunidad</a>
       <a href="#faq">Preguntas</a>
     </div>
     <div class="nav-actions">
       <a class="icon-btn" href="https://instagram.com/fluxy.co" target="_blank" rel="noopener" aria-label="Instagram">
-        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none"/></svg>
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none"/></svg>
       </a>
-      <a class="btn btn-primary wa-cta" href="#" data-wa-msg="Hola 👋 quiero comprar Fluxy Oil">Comprar</a>
+      <a class="btn btn-primary wa-cta" href="https://wa.me/message/JJA54VXJ23XLK1" target="_blank" rel="noopener">Comprar</a>
+      <button class="burger" aria-label="Abrir menú" onclick="document.querySelector('.mobile-menu').classList.add('open')">☰</button>
     </div>
-    <button class="burger" onclick="document.querySelector('.mobile-menu').classList.add('open')">☰</button>
   </nav>
 </header>
 
 <div class="mobile-menu">
-  <button class="mobile-close" onclick="document.querySelector('.mobile-menu').classList.remove('open')">✕</button>
-  <a href="#producto" onclick="document.querySelector('.mobile-menu').classList.remove('open')">Producto</a>
-  <a href="#beneficios" onclick="document.querySelector('.mobile-menu').classList.remove('open')">Beneficios</a>
-  <a href="#testimonios" onclick="document.querySelector('.mobile-menu').classList.remove('open')">Testimonios</a>
-  <a href="#comunidad" onclick="document.querySelector('.mobile-menu').classList.remove('open')">Comunidad</a>
-  <a href="#faq" onclick="document.querySelector('.mobile-menu').classList.remove('open')">Preguntas</a>
-  <a class="btn btn-primary wa-cta" href="#" data-wa-msg="Hola 👋 quiero comprar Fluxy Oil">Comprar por WhatsApp</a>
+  <button class="mobile-close" aria-label="Cerrar menú" onclick="document.querySelector('.mobile-menu').classList.remove('open')">✕</button>
+  <a href="#producto">Producto</a>
+  <a href="#como-se-usa">Cómo se usa</a>
+  <a href="#beneficios">Beneficios</a>
+  <a href="#comunidad">Comunidad</a>
+  <a href="#faq">Preguntas</a>
+  <a class="btn btn-primary wa-cta" href="https://wa.me/message/JJA54VXJ23XLK1" target="_blank" rel="noopener">Comprar por WhatsApp</a>
 </div>
 
 <main id="top">
 
-  <!-- ===== HERO (split panel, estilo AGITA/APLICA) ===== -->
+  <!-- ===== HERO ===== -->
   <section class="hero">
     <div class="hero-grid">
       <div class="hero-copy reveal">
-        <span class="eyebrow">Bienestar femenino · Uso tópico</span>
-        <h1>Alivio<span class="sub">para esos días del mes, gota a gota</span></h1>
-        <p>Fluxy Oil es un aceite de uso tópico pensado para acompañarte durante tu ciclo. Una fórmula innovadora en un mercado que casi nadie está atendiendo de verdad.</p>
+        <span class="eyebrow">Bienestar menstrual · Uso tópico</span>
+        <h1>Fluxy<span class="sub">tu mejor aliado para esos días del mes</span></h1>
+        <p>Fluxy Oil es un aceite de uso tópico creado para acompañar a las mujeres durante su menstruación y ayudar a aliviar los cólicos y molestias menstruales. Su fórmula combina ingredientes de origen natural con propiedades analgésicas, antiinflamatorias y antiespasmódicas, convirtiéndolo en una alternativa práctica, cómoda y no invasiva para el bienestar menstrual.</p>
         <div class="hero-cta">
-          <a class="btn btn-wa wa-cta" href="#" data-wa-msg="Hola 👋 quiero comprar Fluxy Oil">Comprar ahora</a>
+          <a class="btn btn-wa wa-cta" href="https://wa.me/message/JJA54VXJ23XLK1" target="_blank" rel="noopener">Comprar ahora</a>
           <a class="btn btn-outline" href="https://instagram.com/fluxy.co" target="_blank" rel="noopener">Síguenos @fluxy.co</a>
         </div>
         <div class="trust-row">
           <span>Ingredientes naturales</span>
-          <span>Fórmula innovadora</span>
-          <span>Comunidad Fluxy</span>
+          <span>Uso tópico</span>
+          <span>Envíos a toda Colombia</span>
         </div>
       </div>
-      <div class="hero-visual-wrap reveal">
-        <div class="hero-visual photo-real blob-shape">
-          <img src="Im%C3%A1genes/Captura%20de%20pantalla%202026-09-03%20135225.png" alt="Fluxy Oil, aceite natural para dolores menstruales">
+      <div class="hero-visual">
+        <div class="float-wrap">
+          <img class="float-img" src="img/hero-fluxy.webp" alt="Fluxy Oil 50 ml, aceite natural para dolores menstruales" width="465" height="1500" fetchpriority="high">
+          <div class="float-shadow"></div>
         </div>
-        <svg class="butterfly" width="34" height="34" viewBox="0 0 40 40" fill="none" style="bottom:18px;right:18px">
-          <path d="M20 20C20 20 16 6 8 8C2 9.5 4 19 12 20C4 21 2 30.5 8 32C16 34 20 20 20 20Z" fill="var(--pink-deep)"/>
-          <path d="M20 20C20 20 24 6 32 8C38 9.5 36 19 28 20C36 21 38 30.5 32 32C24 34 20 20 20 20Z" fill="var(--pink)"/>
-        </svg>
+        <img class="butterfly" src="img/logo.png" alt="" width="227" height="240">
       </div>
     </div>
   </section>
 
   <!-- ===== Marquee ===== -->
-  <div class="strip">
+  <div class="strip" aria-hidden="true">
     <div class="track">
-      <span>alivio natural</span><span>fórmula innovadora</span><span>bienestar femenino</span><span>únete a la comunidad</span>
-      <span>alivio natural</span><span>fórmula innovadora</span><span>bienestar femenino</span><span>únete a la comunidad</span>
+      <span>Alivio natural</span><span>Fluye sin límites</span><span>Bienestar menstrual</span><span>Únete a la comunidad</span>
+      <span>Alivio natural</span><span>Fluye sin límites</span><span>Bienestar menstrual</span><span>Únete a la comunidad</span>
+      <span>Alivio natural</span><span>Fluye sin límites</span><span>Bienestar menstrual</span><span>Únete a la comunidad</span>
     </div>
   </div>
 
-  <!-- ===== Ritual Fluxy (foto + card, estilo screenshot 2) ===== -->
+  <!-- ===== Ritual Fluxy ===== -->
   <section class="ritual">
     <div class="ritual-frame reveal">
-      <div class="photo-real">
-        <img src="Im%C3%A1genes/Captura%20de%20pantalla%202026-09-03%20135524.png" alt="Fluxy Oil, Fluxy Mini y caja, la línea completa">
-      </div>
       <div class="ritual-card">
         <h2>Ritual Fluxy</h2>
-        <p>Tu cuerpo merece pausas, cuidado y amor — sobre todo en esos días.<br>Fluxy no es solo un aceite, es una invitación a reconectar contigo.</p>
+        <p class="lead">No queremos que aprendas a vivir con el dolor. Queremos que aprendas a escucharte.</p>
+        <p>Cuando esos días lleguen, haz una pausa. Respira profundo, suelta por un momento lo que estás haciendo y escucha lo que tu cuerpo necesita. Regálate unos minutos para conectar contigo, cuidar de ti y permitirte bajar el ritmo sin culpa.</p>
+        <p>Deja que Fluxy sea parte de ese momento, un espacio para aliviar las molestias, sentirte cómoda y volver poco a poco a aquello que te mueve.</p>
+        <p>Porque cuidarte no significa detener tu vida. Significa escucharte para poder seguir.</p>
+        <p class="tagline">Tu ciclo sigue. Tu vida también. Fluye sin límites.</p>
+      </div>
+      <div class="ritual-photo">
+        <img src="img/ritual-isa.webp" alt="Clienta de Fluxy haciendo un corazón con las manos alrededor de la caja de Fluxy Oil" width="647" height="1148" loading="lazy">
       </div>
     </div>
   </section>
 
-  <!-- ===== Cómo se usa (split, estilo AGITA/APLICA) ===== -->
-  <section class="howto">
+  <!-- ===== Cómo se usa: personaje · texto · personaje ===== -->
+  <section class="howto" id="como-se-usa">
     <div class="howto-grid">
+      <div class="pj pj-left reveal">
+        <img src="img/personaje-oil.webp" alt="Personaje Fluxy Oil señalando los pasos" width="368" height="528" loading="lazy">
+      </div>
       <div class="howto-copy reveal">
-        <span class="eyebrow">Cómo se usa</span>
+        <span class="eyebrow">Modo de uso</span>
+        <h2>Así se usa Fluxy</h2>
         <div class="step-line">
-          <h3>Agita</h3>
-          <p>Antes de cada uso, agita suavemente el roll-on.</p>
+          <span class="step-num">01</span>
+          <div>
+            <h3>Agita</h3>
+            <p>Agita el producto antes de usar.</p>
+          </div>
         </div>
         <div class="step-line">
-          <h3>Aplica</h3>
-          <p>Desliza sobre la zona baja del abdomen y masajea con movimientos suaves.</p>
+          <span class="step-num">02</span>
+          <div>
+            <h3>Dispensa</h3>
+            <p>Dispensa de 3 a 4 pumps en tus manos y frótalas para emulsionar el aceite. Si tienes la presentación roll-on, aplica una cantidad generosa directamente sobre la zona.</p>
+          </div>
         </div>
         <div class="step-line">
-          <h3>Siente</h3>
-          <p>Repite las veces que lo necesites durante el día.</p>
+          <span class="step-num">03</span>
+          <div>
+            <h3>Masajea</h3>
+            <p>Masajea suavemente con movimientos circulares la parte baja del abdomen, el ombligo y la zona lumbar. Déjalo absorber y permite que este momento de cuidado haga parte de tu ritual.</p>
+          </div>
         </div>
       </div>
-      <div class="howto-visual photo-real reveal">
-        <img src="Im%C3%A1genes/Captura%20de%20pantalla%202026-09-03%20135430.png" alt="Fluxy Mini roll-on, fácil de aplicar">
+      <div class="pj pj-right reveal">
+        <img src="img/personaje-mini.webp" alt="Personaje Fluxy Mini señalando los pasos" width="538" height="739" loading="lazy">
       </div>
     </div>
   </section>
 
   <!-- ===== Producto ===== -->
-  <section class="spotlight" id="producto">
+  <section class="products" id="producto">
     <div class="wrap">
-      <div class="spotlight-img photo-real reveal">
-        <img src="Im%C3%A1genes/Captura%20de%20pantalla%202026-09-03%20135407.png" alt="Fluxy Oil con su empaque">
-      </div>
-      <div class="spotlight-copy reveal">
+      <div class="section-head reveal">
         <span class="eyebrow">El producto</span>
-        <h2>Fluxy Oil, tu aliado en cada ciclo</h2>
-        <p style="color:var(--ink-soft);font-weight:300;font-size:.94rem">Un roll-on de aceite natural, fácil de aplicar y de llevar contigo a donde vayas. Disponible en presentación grande y en Fluxy Mini, ideal para tu cartera.</p>
-        <ul class="ing-list">
-          <li><span><b>Uso tópico directo</b> — se aplica y se masajea suavemente sobre la zona.</span></li>
-          <li><span><b>Formato roll-on</b> — práctico, discreto y fácil de llevar contigo.</span></li>
-          <li><span><b>Ingredientes naturales</b> — pensado para tu bienestar, sin complicaciones.</span></li>
-          <li><span><b>Presentaciones</b> — Fluxy Oil y Fluxy Mini, según lo que necesites.</span></li>
-        </ul>
-        <a class="btn btn-wa wa-cta" href="#" data-wa-msg="Hola 👋 quiero comprar Fluxy Oil">Comprar por WhatsApp</a>
+        <h2>Elige tu Fluxy</h2>
+      </div>
+
+      <!-- Fluxy Oil 50 ml -->
+      <article class="product reveal">
+        <div class="carousel" data-autoplay="4500">
+          <div class="car-track">
+            <img src="img/oil-1.webp" alt="Fluxy Oil 50 ml" width="1400" height="1400" loading="lazy">
+            <img src="img/oil-2.webp" alt="Fluxy Oil 50 ml junto a su caja" width="1080" height="1080" loading="lazy">
+            <img src="img/oil-3.webp" alt="Fluxy Oil y Fluxy Mini sobre sus cajas" width="1080" height="1080" loading="lazy">
+            <img src="img/oil-4.webp" alt="Beneficios e ingredientes en la etiqueta de Fluxy Oil" width="1080" height="1080" loading="lazy">
+            <img src="img/oil-5.webp" alt="Modo de uso en la etiqueta de Fluxy Oil" width="1080" height="1080" loading="lazy">
+            <img src="img/oil-6.webp" alt="Fluxy Oil, caja y Fluxy Mini" width="1080" height="1080" loading="lazy">
+          </div>
+        </div>
+        <div class="product-copy">
+          <h3>Fluxy Oil</h3>
+          <p class="tag">Tu ritual completo para esos días</p>
+          <span class="size">50 ml · Para tenerlo en casa y acompañarte durante varios ciclos</span>
+          <div class="qa">
+            <div><h4>¿Qué es?</h4><p>Un aceite de uso tópico creado para acompañarte durante la menstruación y ayudarte a aliviar los cólicos y las molestias menstruales.</p></div>
+            <div><h4>¿Cómo se usa?</h4><p>Aplica el producto directamente sobre el ombligo, la parte baja del abdomen y la zona lumbar. Masajea suavemente con movimientos circulares hasta que se absorba.</p></div>
+            <div><h4>¿Qué contiene?</h4><p>Una fórmula que combina manzanilla, canela, salvia blanca, menta, jengibre, lavanda, apitoxina y lidocaína, ingredientes seleccionados por sus propiedades analgésicas, antiinflamatorias y antiespasmódicas.</p></div>
+            <div><h4>¿Por qué elegirlo?</h4><p>Su presentación de 50 ml es ideal para tener tu Fluxy siempre a mano y convertir el cuidado menstrual en parte de tu rutina.</p></div>
+          </div>
+          <div class="buy-row">
+            <span class="price">$59.900<small>COP</small></span>
+            <a class="btn btn-wa wa-cta" href="https://wa.me/message/JJA54VXJ23XLK1" target="_blank" rel="noopener">Comprar por WhatsApp</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Fluxy Mini 5 ml -->
+      <article class="product flip reveal">
+        <div class="carousel" data-autoplay="4500">
+          <div class="car-track">
+            <img src="img/mini-1.webp" alt="Fluxy Mini 5 ml" width="1080" height="1080" loading="lazy">
+            <img src="img/mini-2.webp" alt="Fluxy Mini con su tarjeta" width="1080" height="1080" loading="lazy">
+            <img src="img/mini-3.webp" alt="Fluxy Mini en su empaque de cartón" width="1082" height="1082" loading="lazy">
+            <img src="img/mini-4.webp" alt="Fluxy Mini junto a Fluxy Oil" width="1080" height="1080" loading="lazy">
+          </div>
+        </div>
+        <div class="product-copy">
+          <h3>Fluxy Mini</h3>
+          <p class="tag">Pequeño en tamaño. Gigante para acompañarte.</p>
+          <span class="size">5 ml · Tu Fluxy para llevar a todas partes</span>
+          <div class="qa">
+            <div><h4>¿Qué es?</h4><p>La versión mini de nuestro aceite de uso tópico, creada para que puedas llevar tu ritual contigo estés donde estés.</p></div>
+            <div><h4>¿Cómo se usa?</h4><p>Aplica el producto directamente sobre el ombligo, la parte baja del abdomen y la zona lumbar. Masajea suavemente hasta que se absorba.</p></div>
+            <div><h4>¿Qué contiene?</h4><p>La misma fórmula de Fluxy Oil: manzanilla, canela, salvia blanca, menta, jengibre, lavanda, apitoxina y lidocaína.</p></div>
+            <div><h4>¿Por qué elegirlo?</h4><p>Su formato de 5 ml cabe fácilmente en tu cartera o bolso y tiene una duración aproximada de un mes, para que tengas una solución práctica siempre contigo.</p></div>
+          </div>
+          <div class="buy-row">
+            <span class="price">$8.900<small>COP</small></span>
+            <a class="btn btn-wa wa-cta" href="https://wa.me/message/JJA54VXJ23XLK1" target="_blank" rel="noopener">Comprar por WhatsApp</a>
+          </div>
+        </div>
+      </article>
+
+      <div class="products-close reveal">
+        <p>Dos tamaños. Un mismo propósito: que el dolor no decida por ti.</p>
+        <p>Tu ciclo sigue. Tu vida también. Fluye sin límites.</p>
       </div>
     </div>
   </section>
@@ -463,30 +569,35 @@
       <div class="section-head reveal">
         <span class="eyebrow">Beneficios</span>
         <h2>Cuidado pensado en cada detalle</h2>
-        <p>Todo lo que hace de Fluxy Oil un ritual y no solo un producto más.</p>
       </div>
       <div class="benefits-grid">
-        <div class="benefit-card reveal"><span class="num">01</span><h3>Ingredientes naturales</h3><p>Una fórmula pensada para tu bienestar, sin ingredientes agresivos.</p></div>
-        <div class="benefit-card reveal"><span class="num">02</span><h3>Fórmula innovadora</h3><p>Uso tópico en un mercado donde casi todo es oral. Diferente por diseño.</p></div>
-        <div class="benefit-card reveal"><span class="num">03</span><h3>Fácil y rápido</h3><p>Aplícalo donde más lo necesitas, cuando lo necesitas.</p></div>
-        <div class="benefit-card reveal"><span class="num">04</span><h3>Portátil</h3><p>Con Fluxy Mini lo llevas siempre contigo, en tu cartera o maleta.</p></div>
-        <div class="benefit-card reveal"><span class="num">05</span><h3>Diseñado para ti</h3><p>Minimalista, cálido y femenino, de la textura al empaque.</p></div>
-        <div class="benefit-card reveal"><span class="num">06</span><h3>Envíos a Colombia</h3><p>Pide por WhatsApp y recíbelo donde estés.</p></div>
+        <div class="benefit-card reveal"><span class="num">01</span><h3>Fórmula única pensada para ti</h3><p>Una combinación de manzanilla, canela, salvia blanca, menta, jengibre, lavanda, apitoxina y lidocaína, pensada para acompañar tu bienestar durante la menstruación.</p></div>
+        <div class="benefit-card reveal"><span class="num">02</span><h3>Una forma diferente de cuidarte</h3><p>Fluxy es un aceite de uso tópico que actúa directamente en las zonas donde sientes las molestias, como una alternativa práctica al consumo de productos químicos y/o por vía oral.</p></div>
+        <div class="benefit-card reveal"><span class="num">03</span><h3>Fácil de incorporar a tu día</h3><p>Aplícalo directamente sobre el ombligo, la parte baja del abdomen y la zona lumbar, masajea suavemente y deja que se absorba.</p></div>
+        <div class="benefit-card reveal"><span class="num">04</span><h3>Siempre contigo</h3><p>Con Fluxy Mini de 5 ml, puedes llevar tu aliado en la cartera, el bolso o la maleta y tenerlo a la mano siempre que lo necesites.</p></div>
+        <div class="benefit-card reveal"><span class="num">05</span><h3>Creado alrededor de tu experiencia</h3><p>Desde la fórmula hasta el empaque, Fluxy busca hacer del cuidado menstrual una experiencia cómoda, cercana y estética, porque cuidarte también puede sentirse bien.</p></div>
+        <div class="benefit-card reveal"><span class="num">06</span><h3>Enviamos a toda Colombia</h3><p>Pide tu Fluxy por WhatsApp y recibe tu producto estés donde estés en Colombia.</p></div>
       </div>
+      <p class="benefits-close reveal">Fluye sin límites.</p>
     </div>
   </section>
 
-  <!-- ===== Comunidad (banda fotográfica, estilo screenshot 3) ===== -->
-  <section class="community-band reveal" id="comunidad">
-    <div class="photo-real dark">
-      <img src="Im%C3%A1genes/Captura%20de%20pantalla%202026-09-03%20135534.png" alt="Fluxy Oil, Fluxy Mini y caja">
-    </div>
-    <div class="community-inner wrap">
-      <h2>Únete a la comunidad Fluxy</h2>
-      <p>Síguenos en Instagram y TikTok como <b>@fluxy.co</b> para tips, novedades y mucho más.</p>
-      <div class="hero-cta">
-        <a class="btn btn-light" href="https://instagram.com/fluxy.co" target="_blank" rel="noopener">Instagram</a>
-        <a class="btn btn-light" href="https://www.tiktok.com/@fluxy.co" target="_blank" rel="noopener">TikTok</a>
+  <!-- ===== Comunidad ===== -->
+  <section class="community" id="comunidad">
+    <div class="wrap">
+      <div class="community-grid reveal">
+        <div class="community-photo">
+          <img src="img/comunidad-chicas.webp" alt="Cuatro clientas de Fluxy sonriendo con sus productos" width="1280" height="720" loading="lazy">
+        </div>
+        <div class="community-copy">
+          <span class="eyebrow">Comunidad</span>
+          <h2>Únete a la comunidad Fluxy</h2>
+          <p>Síguenos en Instagram y TikTok como <b>@fluxy.co</b> para tips, novedades y mucho más.</p>
+          <div class="hero-cta">
+            <a class="btn btn-light" href="https://instagram.com/fluxy.co" target="_blank" rel="noopener">Instagram</a>
+            <a class="btn btn-light" href="https://www.tiktok.com/@fluxy.co" target="_blank" rel="noopener">TikTok</a>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -497,24 +608,31 @@
       <div class="section-head reveal">
         <span class="eyebrow">Testimonios</span>
         <h2>Lo que dice la comunidad</h2>
-        <p>Historias reales de quienes ya hacen parte de esto. <!-- TODO: reemplazar por testimonios reales de clientas --></p>
       </div>
+      <!-- TODO: reemplazar por reseñas reales enviadas por las clientas -->
       <div class="t-grid">
         <div class="t-card reveal">
-          <span class="t-mark">"</span>
+          <span class="t-mark">“</span>
+          <div class="t-stars" aria-label="5 de 5">★★★★★</div>
           <p>Desde que empecé a usar Fluxy, esos días cambiaron por completo. Lo aplico y en minutos siento la diferencia.</p>
           <div class="t-who"><div class="t-avatar">C</div><div><b>Camila R.</b><br><span>Clienta Fluxy</span></div></div>
         </div>
         <div class="t-card reveal">
-          <span class="t-mark">"</span>
+          <span class="t-mark">“</span>
+          <div class="t-stars" aria-label="5 de 5">★★★★★</div>
           <p>Me encanta que sea tan fácil de llevar. La versión mini vive en mi cartera y ya no salgo sin ella.</p>
           <div class="t-who"><div class="t-avatar">V</div><div><b>Valentina M.</b><br><span>Clienta Fluxy</span></div></div>
         </div>
         <div class="t-card reveal">
-          <span class="t-mark">"</span>
-          <p>Buscaba algo natural, sin pastillas, y Fluxy fue justo lo que necesitaba. Ahora hago parte de la comunidad.</p>
+          <span class="t-mark">“</span>
+          <div class="t-stars" aria-label="5 de 5">★★★★★</div>
+          <p>Buscaba algo sin pastillas, y Fluxy fue justo lo que necesitaba. Ahora hago parte de la comunidad.</p>
           <div class="t-who"><div class="t-avatar">D</div><div><b>Daniela P.</b><br><span>Clienta Fluxy</span></div></div>
         </div>
+      </div>
+      <div class="t-cta reveal">
+        <p>¿Ya usaste Fluxy? Cuéntanos cómo te fue.</p>
+        <a class="btn btn-primary wa-cta" href="https://wa.me/message/JJA54VXJ23XLK1" target="_blank" rel="noopener">Deja tu reseña</a>
       </div>
     </div>
   </section>
@@ -527,41 +645,50 @@
     </div>
     <div class="faq-panel reveal">
       <div class="faq-header">
-        <div class="faq-avatar">f</div>
+        <div class="faq-avatar"><img src="img/logo.png" alt="" width="227" height="240"></div>
         <span class="faq-handle">@fluxy.co</span>
       </div>
       <div class="faq-bubbles">
-        <div class="faq-item" onclick="this.classList.toggle('open')">
-          <div class="faq-q">¿Cómo se usa Fluxy Oil? <span class="plus">+</span></div>
-          <div class="faq-a">Aplica el roll-on directamente sobre la zona baja del abdomen y masajea con movimientos suaves. Repite las veces que lo necesites.</div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">¿Por qué funciona Fluxy? <span class="plus">+</span></button>
+          <div class="faq-a"><p>Fluxy combina manzanilla, canela, salvia blanca, menta, jengibre, lavanda, apitoxina y lidocaína. Su fórmula reúne ingredientes con propiedades analgésicas, antiinflamatorias y antiespasmódicas, junto con la acción anestésica local de la lidocaína, para ayudar a aliviar las molestias del ciclo.</p></div>
         </div>
-        <div class="faq-item" onclick="this.classList.toggle('open')">
-          <div class="faq-q">¿Qué presentaciones existen? <span class="plus">+</span></div>
-          <div class="faq-a">Fluxy Oil en su presentación regular y Fluxy Mini, ideal para llevar en tu cartera.</div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">¿Cada cuánto puedo usar Fluxy? <span class="plus">+</span></button>
+          <div class="faq-a"><p>Puedes utilizarlo cada vez que lo necesites durante tu menstruación, reaplicándolo según tus molestias ya que no tiene efectos secundarios.</p></div>
         </div>
-        <div class="faq-item" onclick="this.classList.toggle('open')">
-          <div class="faq-q">¿Hacen envíos a toda Colombia? <span class="plus">+</span></div>
-          <div class="faq-a">Sí. Escríbenos por WhatsApp con tu ciudad y te confirmamos tiempos y costos de envío.</div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">¿Quiénes pueden usar Fluxy? <span class="plus">+</span></button>
+          <div class="faq-a"><p>Está pensado para personas que menstrúan y puede utilizarse desde la primera menstruación. Si tienes alergias, piel sensible o alguna condición médica, consulta con un profesional de la salud.</p></div>
         </div>
-        <div class="faq-item" onclick="this.classList.toggle('open')">
-          <div class="faq-q">¿Cómo compro? <span class="plus">+</span></div>
-          <div class="faq-a">Directo por WhatsApp: escríbenos con el botón "Comprar" y te acompañamos en todo el proceso.</div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">¿Cómo se usa Fluxy Oil? <span class="plus">+</span></button>
+          <div class="faq-a"><p>Aplica directamente sobre el ombligo, la parte baja del abdomen y la zona lumbar y masajea suavemente hasta que se absorba.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">¿Qué presentaciones existen? <span class="plus">+</span></button>
+          <div class="faq-a">
+            <p><b>Fluxy Oil de 50 ml:</b> puede durar entre 4 y 6 meses.</p>
+            <p><b>Fluxy Mini de 5 ml:</b> ideal para llevar contigo siempre, con una duración aproximada de un mes.</p>
+            <p>(La duración depende de la intensidad del uso del producto).</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">¿Hacen envíos a toda Colombia? <span class="plus">+</span></button>
+          <div class="faq-a"><p>Sí. Escríbenos por WhatsApp con tu ciudad y te confirmamos tiempos y costos de envío.</p></div>
         </div>
       </div>
-      <svg class="butterfly" width="30" height="30" viewBox="0 0 40 40" fill="none">
-        <path d="M20 20C20 20 16 6 8 8C2 9.5 4 19 12 20C4 21 2 30.5 8 32C16 34 20 20 20 20Z" fill="#fff"/>
-        <path d="M20 20C20 20 24 6 32 8C38 9.5 36 19 28 20C36 21 38 30.5 32 32C24 34 20 20 20 20Z" fill="#fff"/>
-      </svg>
+      <img class="faq-deco" src="img/logo.png" alt="" width="227" height="240">
     </div>
   </section>
 
   <!-- ===== CTA final ===== -->
   <section class="final-cta reveal">
-    <h2>Empieza a sentirte mejor, cada mes</h2>
-    <p>Haz parte de la comunidad Fluxy y descubre una forma distinta de cuidarte.</p>
+    <h2>Fluye sin límites</h2>
+    <p>Tu ciclo sigue. Tu vida también. Llévate tu Fluxy con <b>15% OFF</b> en tu primera compra.</p>
     <div class="hero-cta">
-      <a class="btn btn-light wa-cta" href="#" data-wa-msg="Hola 👋 quiero comprar Fluxy Oil">Comprar por WhatsApp</a>
-      <a class="btn btn-outline" style="border-color:rgba(255,255,255,.4);color:#fff" href="https://instagram.com/fluxy.co" target="_blank" rel="noopener">Síguenos en Instagram</a>
+      <a class="btn btn-light wa-cta" href="https://wa.me/message/JJA54VXJ23XLK1" target="_blank" rel="noopener">Comprar por WhatsApp</a>
+      <a class="btn btn-outline" style="border-color:rgba(255,255,255,.45);color:#fff" href="https://instagram.com/fluxy.co" target="_blank" rel="noopener">Síguenos en Instagram</a>
     </div>
   </section>
 
@@ -571,20 +698,16 @@
   <div class="wrap">
     <div class="foot-grid">
       <div>
-        <a href="#top" class="logo" style="margin-bottom:16px;display:inline-flex">
-          <svg class="logo-mark" viewBox="0 0 40 40" fill="none">
-            <path d="M20 20C20 20 16 6 8 8C2 9.5 4 19 12 20C4 21 2 30.5 8 32C16 34 20 20 20 20Z" fill="url(#bowGrad)"/>
-            <path d="M20 20C20 20 24 6 32 8C38 9.5 36 19 28 20C36 21 38 30.5 32 32C24 34 20 20 20 20Z" fill="url(#bowGrad)"/>
-            <circle cx="20" cy="20" r="2.6" fill="#3d2b2e"/>
-          </svg>
-          <span class="logo-text">fluxy <em>oil</em></span>
+        <a href="#top" class="logo" style="margin-bottom:16px;display:inline-flex" aria-label="Fluxy Oil — inicio">
+          <img src="img/logo.png" alt="Fluxy" width="227" height="240" loading="lazy" style="height:52px">
         </a>
-        <p style="color:var(--ink-soft);font-size:.85rem;max-width:260px;font-weight:300">Aceite tópico natural para acompañarte en cada ciclo. Bienestar femenino, minimalista y cálido.</p>
+        <p style="color:var(--ink-soft);font-size:.9rem;max-width:280px">Aceite de uso tópico para acompañarte en cada ciclo. Fluye sin límites.</p>
       </div>
       <div>
         <h4>Marca</h4>
         <ul>
           <li><a href="#producto">Producto</a></li>
+          <li><a href="#como-se-usa">Cómo se usa</a></li>
           <li><a href="#beneficios">Beneficios</a></li>
           <li><a href="#testimonios">Testimonios</a></li>
         </ul>
@@ -593,7 +716,7 @@
         <h4>Ayuda</h4>
         <ul>
           <li><a href="#faq">Preguntas frecuentes</a></li>
-          <li><a href="#" class="wa-cta" data-wa-msg="Hola 👋 tengo una pregunta sobre Fluxy Oil">Contacto</a></li>
+          <li><a href="https://wa.me/message/JJA54VXJ23XLK1" target="_blank" rel="noopener">Contacto</a></li>
         </ul>
       </div>
       <div>
@@ -610,7 +733,7 @@
         <a class="icon-btn" href="https://instagram.com/fluxy.co" target="_blank" rel="noopener" aria-label="Instagram">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/></svg>
         </a>
-        <a class="icon-btn wa-cta" href="#" data-wa-msg="Hola 👋 quiero comprar Fluxy Oil" aria-label="WhatsApp">
+        <a class="icon-btn" href="https://wa.me/message/JJA54VXJ23XLK1" target="_blank" rel="noopener" aria-label="WhatsApp">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.7.44 3.36 1.28 4.82L2 22l5.4-1.36a9.9 9.9 0 0 0 4.64 1.15h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.86 9.86 0 0 0 12.04 2Z"/></svg>
         </a>
       </div>
@@ -618,26 +741,58 @@
   </div>
 </footer>
 
-<a class="wa-float wa-cta" href="#" data-wa-msg="Hola 👋 quiero comprar Fluxy Oil" aria-label="Escríbenos por WhatsApp">
-  <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.7.44 3.36 1.28 4.82L2 22l5.4-1.36a9.9 9.9 0 0 0 4.64 1.15h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.86 9.86 0 0 0 12.04 2Zm5.79 14.16c-.24.68-1.4 1.3-1.94 1.38-.5.08-1.13.11-1.83-.11-.42-.13-.96-.31-1.65-.6-2.9-1.25-4.79-4.17-4.94-4.36-.14-.2-1.18-1.57-1.18-3 0-1.42.75-2.12 1.02-2.41.26-.29.57-.36.77-.36l.55.01c.18.01.41-.07.64.49.24.58.81 2 .88 2.14.07.15.12.32.02.51-.09.2-.14.32-.28.49-.14.17-.29.38-.42.51-.14.14-.28.29-.12.57.16.28.7 1.15 1.5 1.87 1.03.92 1.9 1.2 2.18 1.34.28.14.44.12.6-.07.16-.2.68-.79.87-1.06.18-.28.37-.23.62-.14.26.09 1.64.77 1.92.91.28.14.47.21.53.33.07.12.07.68-.17 1.36Z"/></svg>
+<a class="wa-float" href="https://wa.me/message/JJA54VXJ23XLK1" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp">
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.7.44 3.36 1.28 4.82L2 22l5.4-1.36a9.9 9.9 0 0 0 4.64 1.15h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.86 9.86 0 0 0 12.04 2Zm5.79 14.16c-.24.68-1.4 1.3-1.94 1.38-.5.08-1.13.11-1.83-.11-.42-.13-.96-.31-1.65-.6-2.9-1.25-4.79-4.17-4.94-4.36-.14-.2-1.18-1.57-1.18-3 0-1.42.75-2.12 1.02-2.41.26-.29.57-.36.77-.36l.55.01c.18.01.41-.07.64.49.24.58.81 2 .88 2.14.07.15.12.32.02.51-.09.2-.14.32-.28.49-.14.17-.29.38-.42.51-.14.14-.28.29-.12.57.16.28.7 1.15 1.5 1.87 1.03.92 1.9 1.2 2.18 1.34.28.14.44.12.6-.07.16-.2.68-.79.87-1.06.18-.28.37-.23.62-.14.26.09 1.64.77 1.92.91.28.14.47.21.53.33.07.12.07.68-.17 1.36Z"/></svg>
 </a>
 
 <script>
-  // TODO: reemplazar por el número real de WhatsApp Business de Fluxy (con indicativo de país, sin + ni espacios)
-  const WHATSAPP_NUMBER = "573000000000";
+  // Menú móvil: cerrar al tocar un enlace
+  document.querySelectorAll('.mobile-menu a').forEach(a =>
+    a.addEventListener('click', () => document.querySelector('.mobile-menu').classList.remove('open')));
 
-  document.querySelectorAll('.wa-cta').forEach(el => {
-    el.addEventListener('click', (e) => {
-      e.preventDefault();
-      const msg = encodeURIComponent(el.getAttribute('data-wa-msg') || 'Hola 👋 quiero comprar Fluxy Oil');
-      window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`, '_blank');
-    });
+  // FAQ
+  document.querySelectorAll('.faq-q').forEach(q => q.addEventListener('click', () => {
+    const open = q.parentElement.classList.toggle('open');
+    q.setAttribute('aria-expanded', open);
+  }));
+
+  // Carruseles de producto: autoplay + flechas + puntos + swipe nativo
+  document.querySelectorAll('.carousel').forEach(car => {
+    const track = car.querySelector('.car-track');
+    const slides = track.children;
+    const n = slides.length;
+    const dots = document.createElement('div');
+    dots.className = 'car-dots';
+    for (let i = 0; i < n; i++) {
+      const b = document.createElement('button');
+      b.setAttribute('aria-label', 'Foto ' + (i + 1));
+      b.addEventListener('click', () => { go(i); restart(); });
+      dots.appendChild(b);
+    }
+    car.insertAdjacentHTML('beforeend',
+      '<button class="car-btn car-prev" aria-label="Foto anterior">‹</button><button class="car-btn car-next" aria-label="Foto siguiente">›</button>');
+    car.appendChild(dots);
+    const idx = () => Math.round(track.scrollLeft / track.clientWidth);
+    const go = i => track.scrollTo({ left: ((i + n) % n) * track.clientWidth });
+    const paint = () => [...dots.children].forEach((d, i) => d.classList.toggle('on', i === idx()));
+    car.querySelector('.car-prev').addEventListener('click', () => { go(idx() - 1); restart(); });
+    car.querySelector('.car-next').addEventListener('click', () => { go(idx() + 1); restart(); });
+    track.addEventListener('scroll', () => requestAnimationFrame(paint), { passive: true });
+    paint();
+    const delay = +car.dataset.autoplay || 4500;
+    let timer;
+    const restart = () => { clearInterval(timer); timer = setInterval(() => go(idx() + 1), delay); };
+    car.addEventListener('pointerenter', () => clearInterval(timer));
+    car.addEventListener('pointerleave', restart);
+    track.addEventListener('touchstart', () => clearInterval(timer), { passive: true });
+    track.addEventListener('touchend', restart, { passive: true });
+    restart();
   });
 
   // Scroll reveal
   const io = new IntersectionObserver((entries) => {
     entries.forEach(en => { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
-  }, { threshold: .15 });
+  }, { threshold: .12 });
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 </script>
 
